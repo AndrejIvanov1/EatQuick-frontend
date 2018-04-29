@@ -15,17 +15,19 @@
   color: white;
 }
 
-.App-title {
-  font-size: 1.5em;
-}
-
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
 .buttonRow {
-    width: 50%
+    margin-left:15%;
+    margin-right:15%;
+    margin-bottom:12px;
+}
+
+.topSide {
+
 }
 
 centered {
