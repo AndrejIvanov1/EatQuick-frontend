@@ -26,8 +26,14 @@
     margin-bottom:12px;
 }
 
-.topSide {
+.singleButtonRow {
+    margin-left:30%;
+    margin-right:30%;
+    margin-bottom:12px;
+}
 
+.topSide {
+    margin-bottom: 36px;
 }
 
 centered {

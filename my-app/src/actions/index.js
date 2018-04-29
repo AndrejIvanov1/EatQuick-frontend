@@ -2,6 +2,19 @@
 const backEndHostName = "https://edbf893f.ngrok.io"
 
 
+export const checkCode = code => {
+    return dispatch => {
+        //
+    }
+}
+
+export const updateCheckingString = checkingString => {
+    return {
+        type: "UPDATE_CHECKING_STRING",
+        checkingString
+    }
+}
+
 export const startBreakfast_inStore = () => {
     return {
         type: "START_BREAKFAST"

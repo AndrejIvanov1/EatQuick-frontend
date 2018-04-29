@@ -7,6 +7,7 @@ import { createStore, applyMiddleware } from 'redux'
 import ourApp from './reducers'
 import './index.css';
 import App from './components/app/App';
+import Checker from './components/checker/Checker';
 
 const loggerMiddleware = createLogger()
 

@@ -1,0 +1,24 @@
+.App {
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+
+
+.checkButtonRow {
+    margin-top:12px;
+}
+
+textarea {
+    width: 100%;
+    outline: 0;
+    padding: 9px;
+    border: initial solid;
+    border-width: 3px;
+    border-radius: 18px;
+    resize: vertical;
+}
+
+textarea:focus {
+    border-color: #c825f0;
+}

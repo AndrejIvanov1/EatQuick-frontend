@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 import { connect } from 'react-redux'
-import logo from './logo.svg';
-import './App.css';
+import logo from './logo.svg'
+import './App.css'
 import {
     startBreakfast,
     startLunch,
@@ -12,7 +12,7 @@ import {
     updateBreakfast,
     updateLunch,
     updateDinner,
-} from './../../actions';
+} from './../../actions'
 
 
 const mapStateToProps = state => {
@@ -50,26 +50,34 @@ const DisconnectedApp = ({
         </header>
 
         <div className="ContainerView">
-          <div className="row">
-            <div className="col-md-6">Breakfast</div>
-            { !meals.breakfast.active && <div className="col-md-3 btn-primary" onClick={() => {startBreakfast()}}>START</div> }
-            { meals.breakfast.active && <div className="col-md-3 btn-danger" onClick={() => {stopBreakfast()}}>FINISH</div> }
-            <div className="col-md-3">10/100</div>
+          <div className="topSide">
+              <div className="row buttonRow">
+                <div className="col-md-6">Breakfast</div>
+                { !meals.breakfast.active && <div className="col-md-3 btn-primary" onClick={() => {startBreakfast()}}>START</div> }
+                { meals.breakfast.active && <div className="col-md-3 btn-danger" onClick={() => {stopBreakfast()}}>FINISH</div> }
+                <div className="col-md-3">10/100</div>
+              </div>
+              <div className="row buttonRow">
+                <div className="col-md-6">Lunch</div>
+                { !meals.lunch.active && <div className="col-md-3 btn-primary" onClick={() => {startLunch()}}>START</div> }
+                { meals.lunch.active && <div className="col-md-3 btn-danger" onClick={() => {stopLunch()}}>FINISH</div> }
+                <div className="col-md-3">20/100</div>
+              </div>
+              <div className="row buttonRow">
+                <div className="col-md-6">Dinner</div>
+                { !meals.dinner.active && <div className="col-md-3 btn-primary" onClick={() => {startDinner()}}>START</div> }
+                { meals.dinner.active && <div className="col-md-3 btn-danger" onClick={() => {stopDinner()}}>FINISH</div> }
+                <div className="col-md-3">10/100</div>
+              </div>
           </div>
-          <div className="row">
-            <div className="col-md-6">Lunch</div>
-            { !meals.lunch.active && <div className="col-md-3 btn-primary" onClick={() => {startLunch()}}>START</div> }
-            { meals.lunch.active && <div className="col-md-3 btn-danger" onClick={() => {stopLunch()}}>FINISH</div> }
-            <div className="col-md-3">20/100</div>
+          <div className="row buttonRow">
+            {<div className="btn-primary" onClick={() => {updateBreakfast()}}>BRING MORE PEOPLE FOR BREAKFAST</div> }
           </div>
-          <div className="row">
-            <div className="col-md-6">Dinner</div>
-            { !meals.dinner.active && <div className="col-md-3 btn-primary" onClick={() => {startDinner()}}>START</div> }
-            { meals.dinner.active && <div className="col-md-3 btn-danger" onClick={() => {stopDinner()}}>FINISH</div> }
-            <div className="col-md-3">10/100</div>
+          <div className="row buttonRow">
+            {<div className="btn-primary" onClick={() => {updateLunch()}}>BRING MORE PEOPLE FOR LUNCH</div> }
           </div>
-          <div className="row">
-            {<div className="btn-primary" onClick={() => {updateBreakfast()}}>BRING MORE PEOPLE</div> }
+          <div className="row buttonRow">
+            {<div className="btn-primary" onClick={() => {updateDinner()}}>BRING MORE PEOPLE FOR DINNER</div> }
           </div>
         </div>
       </div>
@@ -78,4 +86,4 @@ const DisconnectedApp = ({
 
 const App = connect(mapStateToProps, mapDispatchToProps)(DisconnectedApp)
 
-export default App;
+export default App
