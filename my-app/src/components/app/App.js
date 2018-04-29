@@ -67,21 +67,24 @@ const DisconnectedApp = ({
                 <Checker/>
             </div>
         )
-    } else {
-        setInterval(() => {
-            if (meals.breakfast.active) {
-                updateBreakfastStatistics(meals.breakfast.name)
-            }
-
-            if (meals.lunch.active) {
-                updateLunchStatistics(meals.lunch.name)
-            }
-
-            if (meals.dinner.active) {
-                updateDinnerStatistics(meals.dinner.name)
-            }
-        }, 5000)
     }
+
+    const updateStats = meals => {
+        if (meals.breakfast.active) {
+            updateBreakfastStatistics(meals.breakfast.name)
+        }
+
+        if (meals.lunch.active) {
+            updateLunchStatistics(meals.lunch.name)
+        }
+
+        if (meals.dinner.active) {
+            updateDinnerStatistics(meals.dinner.name)
+        }
+    }
+
+    updateStats(meals)
+
 
     const breakfastPercentage = meals.breakfast.served.length / meals.breakfast.invited.length * 100
     const lunchPercentage = meals.lunch.served.length / meals.lunch.invited.length * 100
@@ -128,13 +131,13 @@ const DisconnectedApp = ({
           </div>
           <div className="topSide">
               {  meals.breakfast.active && <div className="row buttonRow">
-                <div className="btn-primary" onClick={() => { updateMeal(meals.breakfast.name) }}>BRING MORE PEOPLE FOR BREAKFAST</div>
+                <div className="btn-primary" onClick={() => { updateMeal(meals.breakfast.name); setTimeout(updateStats(meals), 2000); }}>BRING MORE PEOPLE FOR BREAKFAST</div>
               </div> }
               { meals.lunch.active &&  <div className="row buttonRow">
-                <div className="btn-primary" onClick={() => { updateMeal(meals.lunch.name) }}>BRING MORE PEOPLE FOR LUNCH</div>
+                <div className="btn-primary" onClick={() => { updateMeal(meals.lunch.name); setTimeout(updateStats(meals), 2000); }}>BRING MORE PEOPLE FOR LUNCH</div>
               </div> }
               { meals.dinner.active && <div className="row buttonRow">
-                <div className="btn-primary" onClick={() => { updateMeal(meals.dinner.name) }}>BRING MORE PEOPLE FOR DINNER</div>
+                <div className="btn-primary" onClick={() => { updateMeal(meals.dinner.name); setTimeout(updateStats(meals), 2000); }}>BRING MORE PEOPLE FOR DINNER</div>
               </div>}
             </div>
             <div className="row buttonRow">

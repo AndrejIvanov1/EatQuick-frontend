@@ -1,5 +1,5 @@
 //const backEndHostName = "http://localhost:3030"
-const backEndHostName = "https://4793a362.ngrok.io"
+const backEndHostName = "https://64d9ad66.ngrok.io"
 
 
 export const setBreakfastName = name => {
@@ -37,7 +37,6 @@ export const deActivateChecker = () => {
 
 export const checkCode = (name, code) => {
     return dispatch => {
-              console.log("Updating meal" + name)
               const url = `${backEndHostName}/meal/1?mode=feed`
 
               fetch(url, {
@@ -48,6 +47,9 @@ export const checkCode = (name, code) => {
                  })})
               .then(response => {
                   console.log("Response: " + response)
+                  if (response.status === 200) {
+                    dispatch(deActivateChecker())
+                  }
                   return response.json()
               })
               .then(json => {
