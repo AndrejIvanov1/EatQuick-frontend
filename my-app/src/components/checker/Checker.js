@@ -50,6 +50,6 @@ const DisconnectedChecker = ({ checkingString, meals, check, updateCheckingStrin
     )
 }
 
-const Checker = connect (null, mapDispatchToProps)(DisconnectedChecker)
+const Checker = connect (mapStateToProps, mapDispatchToProps)(DisconnectedChecker)
 
 export default Checker

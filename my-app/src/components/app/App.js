@@ -57,20 +57,6 @@ const DisconnectedApp = ({
     updateBreakfastStatistics
      }) => {
 
-    setInterval(() => {
-        if (meals.breakfast.active) {
-            updateBreakfastStatistics(meals.breakfast.name)
-        }
-
-        if (meals.lunch.active) {
-            updateLunchStatistics(meals.lunch.name)
-        }
-
-        if (meals.dinner.active) {
-            updateDinnerStatistics(meals.dinner.name)
-        }
-    }, 5000)
-
     if (showChecker) {
         return (
             <div className="App">
@@ -80,6 +66,20 @@ const DisconnectedApp = ({
                 <Checker/>
             </div>
         )
+    } else {
+        setInterval(() => {
+            if (meals.breakfast.active) {
+                updateBreakfastStatistics(meals.breakfast.name)
+            }
+
+            if (meals.lunch.active) {
+                updateLunchStatistics(meals.lunch.name)
+            }
+
+            if (meals.dinner.active) {
+                updateDinnerStatistics(meals.dinner.name)
+            }
+        }, 5000)
     }
 
     return (

@@ -30,8 +30,23 @@ export const activateChecker = () => {
 }
 export const checkCode = (name, code) => {
     return dispatch => {
-        //
-    }
+              console.log("Updating meal" + name)
+              const url = `${backEndHostName}/meal/1?mode=feed`
+
+              fetch(url, {
+                 method: "PUT",
+                 body: JSON.stringify({ mealName: name, uid: code }),
+                 headers: new Headers({
+                     'Content-Type': 'application/json'
+                 })})
+              .then(response => {
+                  console.log("Response: " + response)
+                  return response.json()
+              })
+              .then(json => {
+              })
+              .catch( error => console.log(error) )
+      }
 }
 
 export const updateCheckingString = checkingString => {
