@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import logo from './logo.svg'
 import Checker from './../checker/Checker'
+import Progress from 'react-progressbar';
 import './App.css'
 import {
     startBreakfast,
@@ -82,6 +83,8 @@ const DisconnectedApp = ({
         }, 5000)
     }
 
+    const percentage = meals.breakfast.served.length / meals.breakfast.invited.length * 100
+
     return (
       <div className="App">
         <header className="App-header">
@@ -94,7 +97,10 @@ const DisconnectedApp = ({
                 <div className="col-md-6">Breakfast</div>
                 { !meals.breakfast.active && <div className="col-md-3 btn-primary" onClick={() => {startBreakfast()}}>START</div> }
                 { meals.breakfast.active && <div className="col-md-3 btn-danger" onClick={() => {stopBreakfast()}}>FINISH</div> }
-                <div className="col-md-3">{meals.breakfast.served.length}/{meals.breakfast.invited.length}</div>
+                { meals.breakfast.active && <div class="container col-md-2">
+                <Progress completed={percentage}/>
+                </div> }
+                { meals.breakfast.active && <div className="col-md-1">{meals.breakfast.served.length}/{meals.breakfast.invited.length}</div> }
               </div>
               <div className="row buttonRow">
                 <div className="col-md-6">Lunch</div>
