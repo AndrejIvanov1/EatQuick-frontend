@@ -13,6 +13,10 @@ const checker = ( state = initialState, action ) => {
             return Object.assign({}, state, {
                 isActive: true
             })
+        case "DEACTIVATE_CHECKER":
+            return Object.assign({}, state, {
+                isActive: false
+            })
         default:
             return state
     }

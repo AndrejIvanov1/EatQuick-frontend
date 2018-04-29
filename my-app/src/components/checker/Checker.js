@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import './Checker.css'
 import Editor from './../editor/Editor'
-import { checkCode, updateCheckingString } from './../../actions'
+import { checkCode, updateCheckingString, deActivateChecker } from './../../actions'
 
 const mapStateToProps = state => {
     return {
@@ -14,11 +14,12 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         check: (name, code) => { dispatch(checkCode(name, code)) },
-        updateCheckingString: checkingString => { dispatch(updateCheckingString(checkingString)) }
+        updateCheckingString: checkingString => { dispatch(updateCheckingString(checkingString)) },
+        deActivateChecker: () => { dispatch(deActivateChecker()) }
     }
 }
 
-const DisconnectedChecker = ({ checkingString, meals, check, updateCheckingString }) => {
+const DisconnectedChecker = ({ checkingString, meals, check, updateCheckingString, deActivateChecker }) => {
     const updateCheckingStringValue = event => {
         updateCheckingString(event.target.value)
     }
@@ -43,8 +44,11 @@ const DisconnectedChecker = ({ checkingString, meals, check, updateCheckingStrin
                     placeholder="PLEASE INSERT YOUR CODE"
                 />
             </div>
-            <div className="col-md-12">
+            <div className="col-md-12 singleButtonRow">
                 {<div className="btn-primary" onClick={() => {sendCheckCall(checkingString)}}>CHECK</div> }
+            </div>
+            <div className="col-md-12 singleButtonRow">
+                {<div className="btn-primary" onClick={() => {deActivateChecker()}}>BACK</div> }
             </div>
         </div>
     )

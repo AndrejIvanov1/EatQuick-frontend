@@ -28,6 +28,13 @@ export const activateChecker = () => {
         type: "ACTIVATE_CHECKER"
     }
 }
+
+export const deActivateChecker = () => {
+    return {
+        type: "DEACTIVATE_CHECKER"
+    }
+}
+
 export const checkCode = (name, code) => {
     return dispatch => {
               console.log("Updating meal" + name)
