@@ -28,7 +28,8 @@ const mapDispatchToProps = dispatch => {
         startDinner: () => { dispatch(startDinner()) },
         stopBreakfast: () => { dispatch(stopBreakfast()) },
         stopLunch: () => { dispatch(stopLunch()) },
-        stopDinner: () => { dispatch(stopDinner()) }
+        stopDinner: () => { dispatch(stopDinner()) },
+        updateBreakfast: () => { dispatch(updateBreakfast()) }
     }
 }
 
@@ -39,7 +40,8 @@ const DisconnectedApp = ({
     startDinner,
     stopDinner,
     stopLunch,
-    stopBreakfast }) => {
+    stopBreakfast,
+     updateBreakfast }) => {
 
     return (
       <div className="App">
@@ -50,21 +52,24 @@ const DisconnectedApp = ({
         <div className="ContainerView">
           <div className="row">
             <div className="col-md-6">Breakfast</div>
-            { !meals.breakfast.active && <div className="col-md-3 btn-primary" onClick={() => {startBreakfast()}}>START</div>}
-            { meals.breakfast.active && <div className="col-md-3 btn-danger" onClick={() => {stopBreakfast()}}>FINISH</div>}
+            { !meals.breakfast.active && <div className="col-md-3 btn-primary" onClick={() => {startBreakfast()}}>START</div> }
+            { meals.breakfast.active && <div className="col-md-3 btn-danger" onClick={() => {stopBreakfast()}}>FINISH</div> }
             <div className="col-md-3">10/100</div>
           </div>
           <div className="row">
             <div className="col-md-6">Lunch</div>
-            { !meals.lunch.active && <div className="col-md-3 btn-primary" onClick={() => {startLunch()}}>START</div>}
-            { meals.lunch.active && <div className="col-md-3 btn-danger" onClick={() => {stopLunch()}}>FINISH</div>}
+            { !meals.lunch.active && <div className="col-md-3 btn-primary" onClick={() => {startLunch()}}>START</div> }
+            { meals.lunch.active && <div className="col-md-3 btn-danger" onClick={() => {stopLunch()}}>FINISH</div> }
             <div className="col-md-3">20/100</div>
           </div>
           <div className="row">
             <div className="col-md-6">Dinner</div>
-            { !meals.dinner.active && <div className="col-md-3 btn-primary" onClick={() => {startDinner()}}>START</div>}
-            { meals.dinner.active && <div className="col-md-3 btn-danger" onClick={() => {stopDinner()}}>FINISH</div>}
+            { !meals.dinner.active && <div className="col-md-3 btn-primary" onClick={() => {startDinner()}}>START</div> }
+            { meals.dinner.active && <div className="col-md-3 btn-danger" onClick={() => {stopDinner()}}>FINISH</div> }
             <div className="col-md-3">10/100</div>
+          </div>
+          <div className="row">
+            {<div className="btn-primary" onClick={() => {updateBreakfast()}}>BRING MORE PEOPLE</div> }
           </div>
         </div>
       </div>
