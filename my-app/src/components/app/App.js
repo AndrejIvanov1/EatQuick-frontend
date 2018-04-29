@@ -2,7 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import logo from './logo.svg'
 import Checker from './../checker/Checker'
-import Progress from 'react-progressbar';
+import Progress from 'react-progressbar'
+import spinner from './../../spinner.svg'
 import './App.css'
 import {
     startBreakfast,
@@ -62,7 +63,7 @@ const DisconnectedApp = ({
         return (
             <div className="App">
                 <header className="App-header">
-                  <img src={logo} className="App-logo" alt="logo" />
+                  <img src={spinner} className="App-logo" alt="logo" />
                 </header>
                 <Checker/>
             </div>
@@ -93,7 +94,7 @@ const DisconnectedApp = ({
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src={spinner} className="App-logo" alt="logo" />
         </header>
 
         <div className="ContainerView">
