@@ -23,19 +23,17 @@ const DisconnectedChecker = ({ checkingString, check, updateCheckingString }) =>
     }
 
     return (
-        <div className="App">
-            <div className="ContainerView">
-                <div className="row">
-                    <Editor
-                        rows={5}
-                        initialValue={checkingString}
-                        updateValue={updateCheckingStringValue}
-                        placeholder="PLEASE INSERT YOUR CODE"
-                    />
-                </div>
-                <div className="col-md-12 checkButtonRow">
-                    {<div className="btn-primary" onClick={() => {checkCode(checkingString)}}>CHECK</div> }
-                </div>
+        <div className="ContainerView">
+            <div className="row margined">
+                <Editor
+                    rows={5}
+                    initialValue={checkingString}
+                    updateValue={updateCheckingStringValue}
+                    placeholder="PLEASE INSERT YOUR CODE"
+                />
+            </div>
+            <div className="col-md-12">
+                {<div className="btn-primary" onClick={() => {checkCode(checkingString)}}>CHECK</div> }
             </div>
         </div>
     )

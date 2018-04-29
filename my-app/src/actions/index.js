@@ -2,6 +2,11 @@
 const backEndHostName = "https://edbf893f.ngrok.io"
 
 
+export const activateChecker = () => {
+    return {
+        type: "ACTIVATE_CHECKER"
+    }
+}
 export const checkCode = code => {
     return dispatch => {
         //
