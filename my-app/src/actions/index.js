@@ -1,6 +1,27 @@
-//const backEndHostName = "localhost:3030"
-const backEndHostName = "https://edbf893f.ngrok.io"
+const backEndHostName = "http://localhost:3030"
+//const backEndHostName = "https://edbf893f.ngrok.io"
 
+
+export const setBreakfastName = name => {
+    return {
+        type: "SET_BRFST_NAME",
+        name
+    }
+}
+
+export const setLunchName = name => {
+    return {
+        type: "SET_LUNCH_NAME",
+        name
+    }
+}
+
+export const setDinnerName = name => {
+    return {
+        type: "SET_DINNER_NAME",
+        name
+    }
+}
 
 export const activateChecker = () => {
     return {
@@ -66,11 +87,12 @@ export const startBreakfast = () => {
     return dispatch => {
         console.log("Starting breakfast")
         const url = `${backEndHostName}/meal`
+        const breakfastName = "breakfast" + new Date().toString()
 
         fetch(url, {
            method: "POST",
            mode: 'cors',
-           body: JSON.stringify({ mealName: "breakfast" }),
+           body: JSON.stringify({ mealName: breakfastName }),
            headers: new Headers({
                'Content-Type': 'application/json'
            })})
@@ -80,6 +102,7 @@ export const startBreakfast = () => {
         })
         .then(json => {
             dispatch(startBreakfast_inStore())
+            dispatch(setBreakfastName(breakfastName))
 
         })
         .catch( error => console.log(error) )
@@ -90,11 +113,12 @@ export const startLunch = () => {
       return dispatch => {
               console.log("Starting lunch")
               const url = `${backEndHostName}/meal`
+              const lunchName = "lunch" + new Date().toString()
 
               fetch(url, {
                  method: "POST",
                  mode: 'cors',
-                 body: JSON.stringify({ mealName: "lunch" }),
+                 body: JSON.stringify({ mealName: lunchName }),
                  headers: new Headers({
                      'Content-Type': 'application/json'
                  })})
@@ -104,7 +128,7 @@ export const startLunch = () => {
               })
               .then(json => {
                   dispatch(startLunch_inStore())
-
+                  dispatch(setLunchName(lunchName))
               })
               .catch( error => console.log(error) )
           }
@@ -113,11 +137,12 @@ export const startDinner = () => {
    return dispatch => {
            console.log("Starting dinner")
            const url = `${backEndHostName}/meal`
+           const dinnerName = "dinner" + new Date().toString()
 
            fetch(url, {
               method: "POST",
               mode: 'cors',
-              body: JSON.stringify({ mealName: "dinner" }),
+              body: JSON.stringify({ mealName: dinnerName }),
               headers: new Headers({
                   'Content-Type': 'application/json'
               })})
@@ -127,7 +152,7 @@ export const startDinner = () => {
            })
            .then(json => {
                dispatch(startDinner_inStore())
-
+               dispatch(setDinnerName(dinnerName))
            })
            .catch( error => console.log(error) )
        }
@@ -147,36 +172,15 @@ export const stopDinner = () => {
        type: "STOP_DINNER"
    }
 }
-export const updateBreakfast = (invited, served) => {
-    return dispatch => {
-            console.log("Updating breakfast")
-            const url = `${backEndHostName}/meal/1?mode=invite`
 
-            fetch(url, {
-               method: "PUT",
-               body: JSON.stringify({ mealName: "breakfast" }),
-               headers: new Headers({
-                   'Content-Type': 'application/json'
-               })})
-            .then(response => {
-                console.log("Response: " + response)
-                return response.json()
-            })
-            .then(json => {
-                dispatch(updateBreakfast_inStore())
-            })
-            .catch( error => console.log(error) )
-        }
-}
-
-export const updateLunch = (invited, served) => {
+export const updateMeal = mealName => {
       return dispatch => {
               console.log("Updating lunch")
               const url = `${backEndHostName}/meal/1?mode=invite`
 
               fetch(url, {
                  method: "PUT",
-                 body: JSON.stringify({ mealName: "lunch" }),
+                 body: JSON.stringify({ mealName: mealName }),
                  headers: new Headers({
                      'Content-Type': 'application/json'
                  })})
@@ -189,27 +193,6 @@ export const updateLunch = (invited, served) => {
               })
               .catch( error => console.log(error) )
           }
-}
-export const updateDinner = (invited, served) => {
-   return dispatch => {
-                 console.log("Updating dinner")
-                 const url = `${backEndHostName}/meal/1?mode=invite`
-
-                 fetch(url, {
-                    method: "PUT",
-                    body: JSON.stringify({ mealName: "dinner" }),
-                    headers: new Headers({
-                        'Content-Type': 'application/json'
-                    })})
-                 .then(response => {
-                     console.log("Response: " + response)
-                     return response.json()
-                 })
-                 .then(json => {
-                     dispatch(updateDinner_inStore())
-                 })
-                 .catch( error => console.log(error) )
-             }
 }
 
 

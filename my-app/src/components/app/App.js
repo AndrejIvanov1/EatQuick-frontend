@@ -10,9 +10,7 @@ import {
     stopBreakfast,
     stopLunch,
     stopDinner,
-    updateBreakfast,
-    updateLunch,
-    updateDinner,
+    updateMeal,
     activateChecker
 } from './../../actions'
 
@@ -32,7 +30,7 @@ const mapDispatchToProps = dispatch => {
         stopBreakfast: () => { dispatch(stopBreakfast()) },
         stopLunch: () => { dispatch(stopLunch()) },
         stopDinner: () => { dispatch(stopDinner()) },
-        updateBreakfast: () => { dispatch(updateBreakfast()) },
+        updateMeal: mealName => { dispatch(updateMeal(mealName)) },
         activateChecker: () => { dispatch(activateChecker()) }
     }
 }
@@ -46,7 +44,7 @@ const DisconnectedApp = ({
     stopDinner,
     stopLunch,
     stopBreakfast,
-    updateBreakfast,
+    updateMeal,
     activateChecker }) => {
 
     if (showChecker) {
@@ -88,15 +86,15 @@ const DisconnectedApp = ({
               </div>
           </div>
           <div className="topSide">
-              <div className="row buttonRow">
-                {<div className="btn-primary" onClick={() => {updateBreakfast()}}>BRING MORE PEOPLE FOR BREAKFAST</div> }
-              </div>
-              <div className="row buttonRow">
-                {<div className="btn-primary" onClick={() => {updateLunch()}}>BRING MORE PEOPLE FOR LUNCH</div> }
-              </div>
-              <div className="row buttonRow">
-                {<div className="btn-primary" onClick={() => {updateDinner()}}>BRING MORE PEOPLE FOR DINNER</div> }
-              </div>
+              {  meals.breakfast.active && <div className="row buttonRow">
+                {<div className="btn-primary" onClick={() => { updateMeal(meals.breakfast.name) }}>BRING MORE PEOPLE FOR BREAKFAST</div> }
+              </div> }
+              { meals.lunch.active &&  <div className="row buttonRow">
+                {<div className="btn-primary" onClick={() => { updateMeal(meals.lunch.name) }}>BRING MORE PEOPLE FOR LUNCH</div> }
+              </div> }
+              { meals.dinner.active && <div className="row buttonRow">
+                {<div className="btn-primary" onClick={() => { updateMeal(meals.dinner.name) }}>BRING MORE PEOPLE FOR DINNER</div> }
+              </div>}
             </div>
             <div className="row buttonRow">
                 {<div className="btn-primary" onClick={() => {activateChecker()}}>BRING UP CHECKER</div> }

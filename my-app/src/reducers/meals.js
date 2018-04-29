@@ -2,28 +2,59 @@ const initialState = {
     breakfast: {
         active: false,
         invited: [],
-        served: []
+        served: [],
+        name: ""
     },
     lunch: {
         active: false,
         invited: [],
-        served: []
+        served: [],
+        name: ""
     },
     dinner: {
         active: false,
         invited: [],
-        served: []
+        served: [],
+        name: ""
     }
 }
 
 const meals = ( state = initialState, action ) => {
     switch (action.type) {
+        case "SET_BRFST_NAME":
+            return Object.assign({}, state, {
+                breakfast: {
+                    active: state.breakfast.active,
+                    invited: state.breakfast.invited,
+                    served: state.breakfast.served,
+                    name: action.name
+                }
+            })
+        case "SET_LUNCH_NAME":
+            return Object.assign({}, state, {
+                lunch: {
+                    active: state.lunch.active,
+                    invited: state.lunch.invited,
+                    served: state.lunch.served,
+                    name: action.name
+                }
+            })
+        case "SET_DINNER_NAME":
+            return Object.assign({}, state, {
+                dinner: {
+                    active: state.dinner.active,
+                    invited: state.dinner.invited,
+                    served: state.dinner.served,
+                    name: action.name
+                }
+            })
         case "START_BREAKFAST":
             return Object.assign({}, state, {
                 breakfast: {
                     active: true,
                     invited: state.breakfast.invited,
-                    served: state.breakfast.served
+                    served: state.breakfast.served,
+                    name: state.breakfast.name
                 }
             })
         case "START_LUNCH":
@@ -31,7 +62,8 @@ const meals = ( state = initialState, action ) => {
                 lunch: {
                    active: true,
                    invited: state.lunch.invited,
-                   served: state.lunch.served
+                   served: state.lunch.served,
+                   name: state.lunch.name
                 }
             })
         case "START_DINNER":
@@ -39,7 +71,8 @@ const meals = ( state = initialState, action ) => {
                 dinner: {
                    active: true,
                    invited: state.dinner.invited,
-                   served: state.dinner.served
+                   served: state.dinner.served,
+                   name: state.dinner.name
                 }
             })
         case "STOP_BREAKFAST":
@@ -47,7 +80,8 @@ const meals = ( state = initialState, action ) => {
                 breakfast: {
                      active: false,
                      invited: state.breakfast.invited,
-                     served: state.breakfast.served
+                     served: state.breakfast.served,
+                     name: ""
                   }
             })
         case "STOP_LUNCH":
@@ -55,7 +89,8 @@ const meals = ( state = initialState, action ) => {
                 lunch: {
                       active: false,
                      invited: state.lunch.invited,
-                     served: state.lunch.served
+                     served: state.lunch.served,
+                     name: ""
                   }
             })
         case "STOP_DINNER":
@@ -63,7 +98,8 @@ const meals = ( state = initialState, action ) => {
                 dinner: {
                       active: false,
                       invited: state.dinner.invited,
-                      served: state.dinner.served
+                      served: state.dinner.served,
+                      name: ""
                    }
             })
         case "UPDATE_BREAKFAST":
@@ -71,7 +107,8 @@ const meals = ( state = initialState, action ) => {
                 breakfast: {
                      active: state.breakfast.active,
                      invited: action.invited,
-                     served: action.served
+                     served: action.served,
+                     name: state.breakfast.name
                   }
             })
         case "UPDATE_LUNCH":
@@ -79,7 +116,8 @@ const meals = ( state = initialState, action ) => {
                 lunch: {
                      active: state.lunch.active,
                      invited: action.invited,
-                     served: action.served
+                     served: action.served,
+                     name: state.lunch.name
                   }
             })
         case "UPDATE_DINNER":
@@ -87,7 +125,8 @@ const meals = ( state = initialState, action ) => {
                 dinner: {
                       active: state.dinner.active,
                       invited: action.invited,
-                      served: action.served
+                      served: action.served,
+                      name: state.dinner.name
                    }
             })
         default:
