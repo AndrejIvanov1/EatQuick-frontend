@@ -11,7 +11,10 @@ import {
     stopLunch,
     stopDinner,
     updateMeal,
-    activateChecker
+    activateChecker,
+    updateDinnerStatistics,
+    updateLunchStatistics,
+    updateBreakfastStatistics
 } from './../../actions'
 
 
@@ -31,7 +34,10 @@ const mapDispatchToProps = dispatch => {
         stopLunch: () => { dispatch(stopLunch()) },
         stopDinner: () => { dispatch(stopDinner()) },
         updateMeal: mealName => { dispatch(updateMeal(mealName)) },
-        activateChecker: () => { dispatch(activateChecker()) }
+        activateChecker: () => { dispatch(activateChecker()) },
+        updateDinnerStatistics: dinnerName => { dispatch(updateDinnerStatistics(dinnerName)) },
+        updateLunchStatistics: lunchName => { dispatch(updateLunchStatistics(lunchName)) },
+        updateBreakfastStatistics: breakfastName => { dispatch(updateBreakfastStatistics(breakfastName)) }
     }
 }
 
@@ -45,7 +51,25 @@ const DisconnectedApp = ({
     stopLunch,
     stopBreakfast,
     updateMeal,
-    activateChecker }) => {
+    activateChecker,
+    updateDinnerStatistics,
+    updateLunchStatistics,
+    updateBreakfastStatistics
+     }) => {
+
+    setInterval(() => {
+        if (meals.breakfast.active) {
+            updateBreakfastStatistics(meals.breakfast.name)
+        }
+
+        if (meals.lunch.active) {
+            updateLunchStatistics(meals.lunch.name)
+        }
+
+        if (meals.dinner.active) {
+            updateDinnerStatistics(meals.dinner.name)
+        }
+    }, 5000)
 
     if (showChecker) {
         return (
@@ -70,19 +94,19 @@ const DisconnectedApp = ({
                 <div className="col-md-6">Breakfast</div>
                 { !meals.breakfast.active && <div className="col-md-3 btn-primary" onClick={() => {startBreakfast()}}>START</div> }
                 { meals.breakfast.active && <div className="col-md-3 btn-danger" onClick={() => {stopBreakfast()}}>FINISH</div> }
-                <div className="col-md-3">10/100</div>
+                <div className="col-md-3">{meals.breakfast.served.length}/{meals.breakfast.invited.length}</div>
               </div>
               <div className="row buttonRow">
                 <div className="col-md-6">Lunch</div>
                 { !meals.lunch.active && <div className="col-md-3 btn-primary" onClick={() => {startLunch()}}>START</div> }
                 { meals.lunch.active && <div className="col-md-3 btn-danger" onClick={() => {stopLunch()}}>FINISH</div> }
-                <div className="col-md-3">20/100</div>
+                <div className="col-md-3">{meals.lunch.served.length}/{meals.lunch.invited.length}</div>
               </div>
               <div className="row buttonRow">
                 <div className="col-md-6">Dinner</div>
                 { !meals.dinner.active && <div className="col-md-3 btn-primary" onClick={() => {startDinner()}}>START</div> }
                 { meals.dinner.active && <div className="col-md-3 btn-danger" onClick={() => {stopDinner()}}>FINISH</div> }
-                <div className="col-md-3">10/100</div>
+                <div className="col-md-3">{meals.dinner.served.length}/{meals.dinner.invited.length}</div>
               </div>
           </div>
           <div className="topSide">
